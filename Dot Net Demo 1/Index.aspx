@@ -2,25 +2,25 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <h2 style="margin-left:30%;">Employee Management System</h2>
-        </div>
-        <div>
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD RUNAT="server">
+    <TITLE></TITLE>
+</HEAD>
+<BODY>
+    <FORM ID="form1" RUNAT="server">
+        <DIV>
+            <H2 STYLE="margin-left: 30%;">Employee Management System</H2>
+        </DIV>
+        <DIV>
 
             <asp:Button ID="Button1" runat="server" Text="Add Emp" OnClick="Button1_Click" />
 
-        </div>
-        <div>
+        </DIV>
+        <DIV>
 
 
 
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ClientIDMode="AutoID">
+            <%--<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ClientIDMode="AutoID">
                 <Columns>
                     <asp:TemplateField HeaderText="ID"> 
                         <ItemTemplate>
@@ -43,10 +43,44 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-            </asp:GridView>
+            </asp:GridView>--%>
 
 
+            <BR />
+            &nbsp;<asp:TextBox ID="TextBox1" runat="server" placeholder="Enter Employee Name"></asp:TextBox>
+            &nbsp;
+
+            <asp:Button ID="Button2" runat="server" Text="Fetch Emp" OnClick="Button2_Click" />
+
+
+
+
+        &nbsp;
+
+            <asp:Button ID="Button3" runat="server" Text="Clear" OnClick="Button3_Click" />
+
+
+
+
+        </DIV>
+
+        <div RUNAT ="server" id="err" VISIBLE="false">
+                        <asp:Label ID="Label4" runat="server" style="color:red;">No Records Found For Given Name in Db!!</asp:Label>
         </div>
-    </form>
-</body>
-</html>
+        <div RUNAT="server" id="EmpLbl" VISIBLE="false">
+            <BR />
+            <BR />
+            Name :
+            <asp:Label ID="Label1" runat="server"></asp:Label>
+            <BR />
+            <BR />
+            Age :
+  <asp:Label ID="Label2" runat="server"></asp:Label>
+            <BR />
+            <BR />
+            Salary :
+  <asp:Label ID="Label3" runat="server"></asp:Label>
+        </div>
+    </FORM>
+</BODY>
+</HTML>
