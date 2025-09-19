@@ -20,34 +20,40 @@
 
 
 
-            <%--<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ClientIDMode="AutoID">
+            <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" ClientIDMode="AutoID" OnRowCommand="GridView1_RowCommand">
                 <Columns>
-                    <asp:TemplateField HeaderText="ID"> 
+                    <asp:TemplateField HeaderText="ID">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="Label1" Text='<%#Eval("nid")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Name"> 
+                    <asp:TemplateField HeaderText="Name">
                         <ItemTemplate>
-                            <asp:Label runat="server"  ID="Label2" Text='<%#Eval("cname")%>'></asp:Label>
+                            <asp:Label runat="server" ID="Label2" Text='<%#Eval("cname")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Salary"> 
+                    <asp:TemplateField HeaderText="Salary">
                         <ItemTemplate>
-                            <asp:Label runat="server"  ID="Label3" Text='<%#Eval("dsalary")%>'></asp:Label>
+                            <asp:Label runat="server" ID="Label3" Text='<%#Eval("dsalary")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Age"> 
+                    <asp:TemplateField HeaderText="Age">
                         <ItemTemplate>
-                            <asp:Label runat="server"  ID="Label4" Text='<%#Eval("nage")%>'></asp:Label>
+                            <asp:Label runat="server" ID="Label4" Text='<%#Eval("nage")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <asp:Button ID="btnEdit" CommandName="edit" CommandArgument='<%#Eval("nid")%>' runat="server" Text="Edit" />
+                            <asp:Button ID="btnDelete" runat="server" Text="Delete" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-            </asp:GridView>--%>
+            </asp:GridView>
 
 
             <BR />
-            &nbsp;<asp:TextBox ID="TextBox1" runat="server" placeholder="Enter Employee Name"></asp:TextBox>
+            <%--      &nbsp;<asp:TextBox ID="TextBox1" runat="server" placeholder="Enter Employee Name"></asp:TextBox>
             &nbsp;
 
             <asp:Button ID="Button2" runat="server" Text="Fetch Emp" OnClick="Button2_Click" />
@@ -80,7 +86,7 @@
             <BR />
             Salary :
   <asp:Label ID="Label3" runat="server"></asp:Label>
-        </div>
+        </div>--%>
     </FORM>
 </BODY>
 </HTML>

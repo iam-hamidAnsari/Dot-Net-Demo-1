@@ -12,14 +12,15 @@ namespace Dot_Net_Demo_1
     public partial class Index : System.Web.UI.Page
     {
         SqlConnection conn;
-        protected void Page_Load(object sender, EventArgs e)
+
+        protected void Page_Load(object sender, EventArgs e) //just after page rendering page load method will call
         {
             string cs = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString.ToString();
             conn = new SqlConnection(cs);
-            //if (!IsPostBack)
-            //{
-            //    BindEmployeeData();
-            //}
+            if (!IsPostBack)
+            {
+                BindEmployeeData();
+            }
 
         }
 
@@ -28,19 +29,19 @@ namespace Dot_Net_Demo_1
             Response.Redirect("AddEmp.aspx");
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            FetchDataIntoLabel(TextBox1.Text);
-        }
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-            TextBox1.Text = string.Empty;
-            EmpLbl.Visible = false;
-            err.Visible = false;
-        }
+        //protected void Button2_Click(object sender, EventArgs e)
+        //{
+        //    FetchDataIntoLabel(TextBox1.Text);
+        //}
+        //protected void Button3_Click(object sender, EventArgs e)
+        //{
+        //    TextBox1.Text = string.Empty;
+        //    EmpLbl.Visible = false;
+        //    err.Visible = false;
+        //}
 
 
-        public void BindEmployeeData()
+        public void BindEmployeeData() // created One Method (Purpose: To read data from db and bind ino=to gridview)
         {
             try
             {
@@ -48,44 +49,55 @@ namespace Dot_Net_Demo_1
                 SqlCommand cmd = new SqlCommand("Usp_GetEmpDeta", conn); //preparing command
                 cmd.CommandType = System.Data.CommandType.StoredProcedure; // passing command type
                 SqlDataReader rdr = cmd.ExecuteReader(); // Reading All table data 
-                //GridView1.DataSource = rdr; 
-                //GridView1.DataBind();
+                GridView1.DataSource = rdr; //store in his data source but not displayed 
+                GridView1.DataBind(); // that shows the data of data source in grid view
+                conn.Close();
             }
             catch (Exception ex) { 
             
             }
         }
 
-
-        public void FetchDataIntoLabel(string EmpName)
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Fetch_Emp_By_Name", conn);
-                // cmd.Parameters.AddWithValue("@Name", EmpName);
-                cmd.Parameters.Add(new SqlParameter("Name", EmpName));
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                SqlDataReader rdr = cmd.ExecuteReader(); // use for DQL Opreations
-                if (rdr.HasRows)
-                {
-                    EmpLbl.Visible = true;
-                    err.Visible = false;
-                    rdr.Read(); // reader is open
-                    Label1.Text = Convert.ToString(rdr["cname"]);
-                    Label2.Text = Convert.ToString(rdr["nage"]);
-                    Label3.Text = Convert.ToString(rdr["dsalary"]);
-                    rdr.Close(); // reader is closed
-                }
-                else {
-                    err.Visible = true;
-                }
-                    conn.Close();
+            if (e.CommandName == "edit") {
+                //Response.Redirect("EditEmp.aspx?id="+e.CommandArgument); //string concatination
+                Response.Redirect($"EditEmp.aspx?id={e.CommandArgument}"); //string Interpolation
             }
-            catch (Exception ex) { 
-            
-            }
-        
         }
+
+
+
+
+        //public void FetchDataIntoLabel(string EmpName)
+        //{
+        //    try
+        //    {
+        //        conn.Open();
+        //        SqlCommand cmd = new SqlCommand("Fetch_Emp_By_Name", conn);
+        //        // cmd.Parameters.AddWithValue("@Name", EmpName);
+        //        cmd.Parameters.Add(new SqlParameter("Name", EmpName));
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        SqlDataReader rdr = cmd.ExecuteReader(); // use for DQL Opreations
+        //        if (rdr.HasRows)
+        //        {
+        //            EmpLbl.Visible = true;
+        //            err.Visible = false;
+        //            rdr.Read(); // reader is open
+        //            Label1.Text = Convert.ToString(rdr["cname"]);
+        //            Label2.Text = Convert.ToString(rdr["nage"]);
+        //            Label3.Text = Convert.ToString(rdr["dsalary"]);
+        //            rdr.Close(); // reader is closed
+        //        }
+        //        else {
+        //            err.Visible = true;
+        //        }
+        //            conn.Close();
+        //    }
+        //    catch (Exception ex) { 
+
+        //    }
+
+        //}
     }
 }

@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddEmp.aspx" />
+    <Content Include="EditEmp.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -196,6 +197,13 @@
     </Compile>
     <Compile Include="AddEmp.aspx.designer.cs">
       <DependentUpon>AddEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmp.aspx.cs">
+      <DependentUpon>EditEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditEmp.aspx.designer.cs">
+      <DependentUpon>EditEmp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
